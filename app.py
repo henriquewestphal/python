@@ -20,6 +20,7 @@ def alterar(nomes):
     print 'Qual nome voce deseja alterar?'
     nome_alterar = raw_input()
     existe = nome_alterar in nomes
+
     if (existe == True):
         print 'Nome encontrado'
         posicao = nomes.index(nome_alterar)
