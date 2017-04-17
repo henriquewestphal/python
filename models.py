@@ -6,43 +6,14 @@ class Perfil(object):
         self.nome = nome
         self.telefone = telefone
         self.empresa = empresa
+        self.__curtidas = 0
 
     def imprimir(self):
-        print 'Nome: %s, Telefone: %s, Empresa: %s' % (self.nome, self.telefone, self.empresa)
+        print 'Nome: %s, Telefone: %s, Empresa: %s, Curtidas: %s' % (self.nome, self.telefone, self.empresa, self.__curtidas)
 
-class Data(object):
-    """data"""
-    def __init__(self, dia, mes, ano):
-        self.dia = dia
-        self.mes = mes
-        self.ano = ano
 
-    def imprimir(self):
-        print'%s/%s/%s'% (self.dia, self.mes, self.ano)
+    def curtir(self):
+        self.__curtidas+=1
 
-class Pessoa(object):
-    """docstring for Pessoa."""
-    def __init__(self, nome, altura, peso):
-        self.nome = nome
-        self.altura = altura
-        self.peso = peso
-
-    def imprimir_imc(self):
-        pesoint = (int(self.peso))
-        alturaint = (float(self.altura))
-        #altura2 = self.altura * self.altura
-        #imc = self.peso / altura2
-        calculo = pesoint / (alturaint * alturaint)
-        print ' IMC de %s é: %s' % (self.nome, calculo)
-
-# resposta alura
-#class Pessoa(object):
-#    def __init__(self, nome, peso, altura):
-#        self.nome = nome
-#        self.peso = float(peso)
-#        self.altura = float(altura)
-#
-#    def imprime(self):
-#        imc = self.peso / (self.altura **2)
-#        print 'O IMC de %s é: %s ' %(self.nome, imc)
-#
+    def total_curtidas(self):
+        return self.__curtidas
