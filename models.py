@@ -16,9 +16,20 @@ class Perfil(object):
     def total_curtidas(self):
         return self.__curtidas
 
+    @classmethod
+    def gerar_perfis(classe, nome_arquivo):
+        arquivo = open(nome_arquivo, 'r')
+        perfis = []
+        for linha in arquivo:
+            valores  = linha.split(',')
+            perfis.append(classe(*valores))
+        arquivo.close()
+        return perfis
+
+
 class Perfil_Vip(Perfil):
     """docstring for Perfil_Vip."""
-    def __init__(self, nome, telefone,empresa, apelido):
+    def __init__(self, nome, telefone,empresa, apelido=''):
         super(Perfil_Vip, self).__init__(nome, telefone, empresa)
         self.apelido = apelido
 
