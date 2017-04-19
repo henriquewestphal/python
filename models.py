@@ -2,6 +2,8 @@
 class Perfil(object):
     """Classe padrão para perfilde usuário."""
     def __init__(self, nome, telefone, empresa):
+        if (len(nome) < 3):
+            raise ValueError('Nome deve ter pelo menos 3 caracteres')
         self.nome = nome
         self.telefone = telefone
         self.empresa = empresa
