@@ -11,4 +11,4 @@ except (IOError, TypeError) as erro:
 finally:
     if (arquivo is not None):
         print('fechando arquivo')
-        arquivo.close() 
+        arquivo.close()
