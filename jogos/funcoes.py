@@ -56,10 +56,7 @@ def comer():
     print('COMEU')
     global cagar
     cagar = cagar + 1
-    global xixi
-    print (xixi)
-    xixi = xixi + 2
-    print ('vontade de cagar: %s e dormir %s' % (cagar, xixi))
+    print ('vontade de cagar: %s' % cagar)
 def dormir():
     print('DORMIU')
 
