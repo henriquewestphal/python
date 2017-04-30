@@ -1,7 +1,7 @@
 class Pessoa(object):
     """docstring for Pessoa."""
     def __init__(self):
-        self.fome = 0
+        self.fome = 1
         self.xixi = 0
         self.cagar = 0
         self.fumar = 0
@@ -9,11 +9,8 @@ class Pessoa(object):
         self.sede = 0
         self.dinheiro = 0
         self.estudar = 0
-        self.jogar_fut = 0
-        self.passeio = 0
-        self.pode = ''
         self.aumento = 0
-        self.disposicao = 0
+        self.disposicao = 3
 
     def status(self):
         print('dinheiro: %s' % pessoa.dinheiro)
@@ -48,10 +45,14 @@ class Pessoa(object):
     def verifica_status(self):
         if (pessoa.xixi >= 3) or (pessoa.cagar >= 3):
             pessoa.banheiro()
+        if (pessoa.disposicao == 0):
+            pessoa.dormir()
+        if (pessoa.fome == 0):
+            pessoa.comer()
+
 
     def fazer_atividade(self,atividade,):
         if (atividade == 1):
-            pessoa.podecomer()
             pessoa.comer()
         elif (atividade == 2):
             pessoa.dormir()
@@ -72,35 +73,26 @@ class Pessoa(object):
         else:
             print('digite um valor valido')
 
-    def podecomer(self):
-        if (pessoa.dinheiro >= 10 ):
-            pessoa.pode = 'sim'
+    def comer(self):
+        if (pessoa.dinheiro >=  10):
+            print('COMEU')
             pessoa.cagar = pessoa.cagar + 1
             pessoa.dinheiro = pessoa.dinheiro - 10
         else:
-            pessoa.pode = 'nao'
-
-    def comer(self):
-        if (pessoa.pode == 'sim'):
-            print('COMEU')
-            pessoa.cagar = pessoa.cagar + 1
-        else:
             print('Nao pode comer')
             print('Voce não pode comer pois voce tem apenas R$%s, e o lanche custa R$10' % pessoa.dinheiro)
+
         pessoa.status()
         pessoa.menu()
 
-    def podedormir(self):
-        if (pessoa.xixi < 2) and (pessoa.disposicao < 5):
-            pessoa.dormir()
-        else:
-            print('Você não pode dormir, ou voce ira fazer xixi na cama, ou sua disposicao esta alta para dormir')
-
 
     def dormir(self):
-        pessoa.xixi = pessoa.xixi + 1
-        pessoa.disposicao = pessoa.disposicao + 1
-        print('DORMIU, sua disposicao foi aumentada')
+        if (pessoa.xixi < 2) and (pessoa.disposicao < 5):
+            pessoa.xixi = pessoa.xixi + 1
+            pessoa.disposicao = pessoa.disposicao + 1
+            print('DORMIU, sua disposicao foi aumentada')
+        else:
+            print('Você não pode dormir, ou voce ira fazer xixi na cama, ou sua disposicao esta alta para dormir')
 
         pessoa.status()
         pessoa.menu()
@@ -133,10 +125,12 @@ class Pessoa(object):
             print('Voce precisa mijar')
             print('mijando...')
             pessoa.xixi = 0
-        if (pessoa.cagar >= 3):
+        elif (pessoa.cagar >= 3):
             print('voce precisa cagar')
             print('cagando...')
             pessoa.cagar = 0
+        else:
+            print('voce nao precisa ir ao banheiro')
 
         pessoa.status()
         pessoa.menu()
@@ -145,11 +139,11 @@ class Pessoa(object):
         if (pessoa.disposicao >= 1) and (pessoa.dinheiro >= 10):
             pessoa.aumento = pessoa.aumento + 20
             print('Parabens, Você Estudou')
-            print('Agora seu salario aumentou %s' % pessoa.aumento)
+            print('Agora seu salario aumentou %s reais' % pessoa.aumento)
             pessoa.disposicao = pessoa.disposicao - 1
             pessoa.dinheiro = pessoa.dinheiro - 10
         else:
-            print('sua disposicao não é o sufuciente para estudar, tente dormir um pouco')
+            print('sua disposicao não é o suficiente para estudar, tente dormir um pouco')
         pessoa.status()
         pessoa.menu()
 
@@ -157,24 +151,35 @@ class Pessoa(object):
         if (pessoa.disposicao >= 1):
             if (pessoa.aumento != 0):
                 pessoa.dinheiro = pessoa.dinheiro + pessoa.aumento
-                print('trabalhou\n E sua renda é %s' % pessoa.dinheiro)
             else:
                 pessoa.dinheiro = pessoa.dinheiro + 10
+            print('trabalhou\n E sua renda é %s' % pessoa.dinheiro)
             pessoa.disposicao = pessoa.disposicao - 1
         else:
             print('voce não esta disposoto atrabalhar')
+
         pessoa.status()
         pessoa.menu()
 
     def jogar(self):
-        print('jogou')
-        #disposicao, dinheiro
+        if (pessoa.disposicao >= 1) and (pessoa.dinheiro >=20):
+            pessoa.dinheiro = pessoa.dinheiro - 20
+            pessoa.disposicao = pessoa.disposicao - 1
+            print('jogou')
+        else:
+            print('Voce não pode jogar, pois esta sem dinheiro ou disposicao')
+
         pessoa.status()
         pessoa.menu()
 
     def passear(self):
-        print('passeou')
-        #disposicao, dinheiro
+        if (pessoa.disposicao >= 1) and (pessoa.dinheiro >=20):
+            pessoa.dinheiro = pessoa.dinheiro - 20
+            pessoa.disposicao = pessoa.disposicao - 1
+            print('passeou')
+        else:
+            print('Voce não pode passear, pois esta sem dinheiro ou disposicao')
+
         pessoa.status()
         pessoa.menu()
 
