@@ -81,7 +81,7 @@ class Pessoa(object):
             print('COMEU')
             pessoa.cagar = pessoa.cagar + 1
         else:
-            print('Nao pode COMEr')
+            print('Nao pode comer')
             print('Voce não pode comer pois voce tem apenas R$%s, e o lanche custa R$10' % pessoa.dinheiro)
         pessoa.status()
         pessoa.menu()
