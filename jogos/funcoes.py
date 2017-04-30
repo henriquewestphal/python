@@ -56,7 +56,7 @@ class Pessoa(object):
         elif (atividade == 2):
             pessoa.dormir()
         elif (atividade == 3):
-            pessoa.fumar()
+            pessoa.chapar()
         elif (atividade == 4):
             pessoa.beber()
         elif (atividade == 5):
@@ -91,28 +91,40 @@ class Pessoa(object):
         pessoa.menu()
 
     def podedormir(self):
-        if (pessoa.xixi > 2) and (pessoa.disposicao < 5):
+        if (pessoa.xixi < 2) and (pessoa.disposicao < 5):
             pessoa.dormir()
         else:
-            print('Você não pode dormir, ou voce ira fazer xixi na cama, ou sua  disposicao esta alta para dormir')
+            print('Você não pode dormir, ou voce ira fazer xixi na cama, ou sua disposicao esta alta para dormir')
 
 
     def dormir(self):
         pessoa.xixi = pessoa.xixi + 1
-        #pessoa.cagar = pessoa.cagar + 1
         pessoa.disposicao = pessoa.disposicao + 1
         print('DORMIU, sua disposicao foi aumentada')
 
         pessoa.status()
         pessoa.menu()
 
-    def fumar(self):
-        print('Fumou, \n Voce esta chapado')
+    def chapar(self):
+        if (pessoa.dinheiro > 30):
+            pessoa.dinheiro = pessoa.dinheiro - 30
+            pessoa.aumento = (pessoa.aumento / 2)
+            pessoa.fome = pessoa.fome + 3
+            print('Fumou, \n Voce esta chapado')
+        else:
+            print('Voce não tem grana para comprar maconha')
+
         pessoa.status()
         pessoa.menu()
 
     def beber(self):
-        print('Bebeu, \n Voce esta bebado ')
+        if (pessoa.dinheiro > 10):
+            pessoa.xixi = pessoa.xixi + 1
+            pessoa.dinheiro = pessoa.dinheiro - 10
+            print('Bebeu, \n Voce esta bebado ')
+        else:
+            print('voce não pode beber, voce nao tem dinheiro')
+
         pessoa.status()
         pessoa.menu()
 
