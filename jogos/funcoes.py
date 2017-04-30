@@ -19,7 +19,8 @@ class Pessoa(object):
         print('dinheiro: %s' % pessoa.dinheiro)
         print('disposicao: %s' % pessoa.disposicao)
         print('aumento: %s' % pessoa.aumento)
-
+        print('vontade de mijar %s' % pessoa.xixi)
+        print('vontade de cagar %s' % pessoa.cagar)
 
     def comecar(self):
         print('##########################')
@@ -28,6 +29,7 @@ class Pessoa(object):
         pessoa.menu()
 
     def menu(self):
+        pessoa.verifica_status()
         print('###########################')
         print('# Oque voce deseja fazer? #')
         print('# 1 - Comer               #')
@@ -43,7 +45,9 @@ class Pessoa(object):
         atividade = int(input('Escolha uma opção: '))
         pessoa.fazer_atividade(atividade)
 
-
+    def verifica_status(self):
+        if (pessoa.xixi >= 3) or (pessoa.cagar >= 3):
+            pessoa.banheiro()
 
     def fazer_atividade(self,atividade,):
         if (atividade == 1):
@@ -87,13 +91,17 @@ class Pessoa(object):
         pessoa.menu()
 
     def podedormir(self):
-        pass
+        if (pessoa.xixi > 2) and (pessoa.disposicao < 5):
+            pessoa.dormir()
+        else:
+            print('Você não pode dormir, ou voce ira fazer xixi na cama, ou sua  disposicao esta alta para dormir')
+
 
     def dormir(self):
         pessoa.xixi = pessoa.xixi + 1
-        pessoa.cagar = pessoa.cagar + 1
+        #pessoa.cagar = pessoa.cagar + 1
         pessoa.disposicao = pessoa.disposicao + 1
-        print('DORMIU')
+        print('DORMIU, sua disposicao foi aumentada')
 
         pessoa.status()
         pessoa.menu()
@@ -109,7 +117,15 @@ class Pessoa(object):
         pessoa.menu()
 
     def banheiro(self):
-        print('cagou, e mijou')
+        if (pessoa.xixi >= 3):
+            print('Voce precisa mijar')
+            print('mijando...')
+            pessoa.xixi = 0
+        if (pessoa.cagar >= 3):
+            print('voce precisa cagar')
+            print('cagando...')
+            pessoa.cagar = 0
+
         pessoa.status()
         pessoa.menu()
 
