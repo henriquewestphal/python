@@ -51,7 +51,7 @@ class Pessoa(object):
             pessoa.comer()
 
 
-    def fazer_atividade(self,atividade,):
+    def fazer_atividade(self,atividade):
         if (atividade == 1):
             pessoa.comer()
         elif (atividade == 2):
