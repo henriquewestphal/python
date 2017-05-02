@@ -11,13 +11,14 @@ class Pessoa(object):
         self.estudar = 0
         self.aumento = 0
         self.disposicao = 3
+        self.atividade = 0
 
     def status(self):
-        print('dinheiro: %s' % pessoa.dinheiro)
-        print('disposicao: %s' % pessoa.disposicao)
-        print('aumento: %s' % pessoa.aumento)
-        print('vontade de mijar %s' % pessoa.xixi)
-        print('vontade de cagar %s' % pessoa.cagar)
+        print('dinheiro: %s' % self.dinheiro)
+        print('disposicao: %s' % self.disposicao)
+        print('aumento: %s' % self.aumento)
+        print('vontade de mijar %s' % self.xixi)
+        print('vontade de cagar %s' % self.cagar)
 
     def comecar(self):
         print('##########################')
@@ -38,149 +39,149 @@ class Pessoa(object):
         print('# 8 - Jogar futebol       #')
         print('# 9 - Passear             #')
         print('###########################')
-        atividade = int(input('Escolha uma opção: '))
-        pessoa.fazer_atividade(pessoa, atividade)
+        self.atividade = int(input('Escolha uma opção: '))
+        self.fazer_atividade()
 
     def verifica_status(self):
-        if (pessoa.xixi >= 3) or (pessoa.cagar >= 3):
-            pessoa.banheiro()
-        if (pessoa.disposicao == 0):
-            pessoa.dormir()
-        if (pessoa.fome == 0):
-            pessoa.comer()
+        if (self.xixi >= 3) or (self.cagar >= 3):
+            self.banheiro()
+        if (self.disposicao == 0):
+            self.dormir()
+        if (self.fome == 0):
+            self.comer()
 
 
-    def fazer_atividade(pessoa, atividade,):
-        if (atividade == 1):
-            pessoa.comer()
-        elif (atividade == 2):
-            pessoa.dormir()
-        elif (atividade == 3):
-            pessoa.chapar()
-        elif (atividade == 4):
-            pessoa.beber()
-        elif (atividade == 5):
-            pessoa.banheiro()
-        elif (atividade == 6):
-            pessoa.aprender()
-        elif (atividade == 7):
-            pessoa.trabalhar()
-        elif (atividade == 8):
-            pessoa.jogar()
-        elif (atividade == 9):
-            pessoa.passear()
+    def fazer_atividade(self):
+        if (self.atividade == 1):
+            self.comer()
+        elif (self.atividade == 2):
+            self.dormir()
+        elif (self.atividade == 3):
+            self.chapar()
+        elif (self.atividade == 4):
+            self.beber()
+        elif (self.atividade == 5):
+            self.banheiro()
+        elif (self.atividade == 6):
+            self.aprender()
+        elif (self.atividade == 7):
+            self.trabalhar()
+        elif (self.atividade == 8):
+            self.jogar()
+        elif (self.atividade == 9):
+            self.passear()
         else:
             print('digite um valor valido')
 
     def comer(self):
-        if (pessoa.dinheiro >=  10):
+        if (self.dinheiro >=  10):
             print('COMEU')
-            pessoa.cagar = pessoa.cagar + 1
-            pessoa.dinheiro = pessoa.dinheiro - 10
+            self.cagar = self.cagar + 1
+            self.dinheiro = self.dinheiro - 10
         else:
             print('Nao pode comer')
-            print('Voce não pode comer pois voce tem apenas R$%s, e o lanche custa R$10' % pessoa.dinheiro)
+            print('Voce não pode comer pois voce tem apenas R$%s, e o lanche custa R$10' % self.dinheiro)
 
-        pessoa.status()
-        pessoa.menu()
+        self.status()
+        #self.menu()
 
 
     def dormir(self):
-        if (pessoa.xixi < 2) and (pessoa.disposicao < 5):
-            pessoa.xixi = pessoa.xixi + 1
-            pessoa.disposicao = pessoa.disposicao + 1
+        if (self.xixi < 2) and (self.disposicao < 5):
+            self.xixi = self.xixi + 1
+            self.disposicao = self.disposicao + 1
             print('DORMIU, sua disposicao foi aumentada')
         else:
             print('Você não pode dormir, ou voce ira fazer xixi na cama, ou sua disposicao esta alta para dormir')
 
-        pessoa.status()
-        pessoa.menu()
+        self.status()
+        #self.menu()
 
     def chapar(self):
-        if (pessoa.dinheiro > 30):
-            pessoa.dinheiro = pessoa.dinheiro - 30
-            pessoa.aumento = (pessoa.aumento / 2)
-            pessoa.fome = pessoa.fome + 3
+        if (self.dinheiro > 30):
+            self.dinheiro = self.dinheiro - 30
+            self.aumento = (self.aumento / 2)
+            self.fome = self.fome + 3
             print('Fumou, \n Voce esta chapado')
         else:
             print('Voce não tem grana para comprar maconha')
 
-        pessoa.status()
-        pessoa.menu()
+        self.status()
+        #self.menu()
 
     def beber(self):
-        if (pessoa.dinheiro > 10):
-            pessoa.xixi = pessoa.xixi + 1
-            pessoa.dinheiro = pessoa.dinheiro - 10
+        if (self.dinheiro > 10):
+            self.xixi = self.xixi + 1
+            self.dinheiro = self.dinheiro - 10
             print('Bebeu, \n Voce esta bebado ')
         else:
             print('voce não pode beber, voce nao tem dinheiro')
 
-        pessoa.status()
-        pessoa.menu()
+        self.status()
+        #self.menu()
 
     def banheiro(self):
-        if (pessoa.xixi >= 3):
+        if (self.xixi >= 3):
             print('Voce precisa mijar')
             print('mijando...')
-            pessoa.xixi = 0
-        elif (pessoa.cagar >= 3):
+            self.xixi = 0
+        elif (self.cagar >= 3):
             print('voce precisa cagar')
             print('cagando...')
-            pessoa.cagar = 0
+            self.cagar = 0
         else:
             print('voce nao precisa ir ao banheiro')
 
-        pessoa.status()
-        pessoa.menu()
+        self.status()
+        #self.menu()
 
     def aprender(self):
-        if (pessoa.disposicao >= 1) and (pessoa.dinheiro >= 10):
-            pessoa.aumento = pessoa.aumento + 20
+        if (self.disposicao >= 1) and (self.dinheiro >= 10):
+            self.aumento = self.aumento + 20
             print('Parabens, Você Estudou')
-            print('Agora seu salario aumentou %s reais' % pessoa.aumento)
-            pessoa.disposicao = pessoa.disposicao - 1
-            pessoa.dinheiro = pessoa.dinheiro - 10
+            print('Agora seu salario aumentou %s reais' % self.aumento)
+            self.disposicao = self.disposicao - 1
+            self.dinheiro = self.dinheiro - 10
         else:
             print('sua disposicao não é o suficiente para estudar, tente dormir um pouco')
-        pessoa.status()
-        pessoa.menu()
+        self.status()
+        #self.menu()
 
     def trabalhar(self):
-        if (pessoa.disposicao >= 1):
-            if (pessoa.aumento != 0):
-                pessoa.dinheiro = pessoa.dinheiro + pessoa.aumento
+        if (self.disposicao >= 1):
+            if (self.aumento != 0):
+                self.dinheiro = self.dinheiro + self.aumento
             else:
-                pessoa.dinheiro = pessoa.dinheiro + 10
-            print('trabalhou\n E sua renda é %s' % pessoa.dinheiro)
-            pessoa.disposicao = pessoa.disposicao - 1
+                self.dinheiro = self.dinheiro + 10
+            print('trabalhou\n E sua renda é %s' % self.dinheiro)
+            self.disposicao = self.disposicao - 1
         else:
             print('voce não esta disposoto atrabalhar')
 
-        pessoa.status()
-        pessoa.menu()
+        self.status()
+        #self.menu()
 
     def jogar(self):
-        if (pessoa.disposicao >= 1) and (pessoa.dinheiro >=20):
-            pessoa.dinheiro = pessoa.dinheiro - 20
-            pessoa.disposicao = pessoa.disposicao - 1
+        if (self.disposicao >= 1) and (self.dinheiro >=20):
+            self.dinheiro = self.dinheiro - 20
+            self.disposicao = self.disposicao - 1
             print('jogou')
         else:
             print('Voce não pode jogar, pois esta sem dinheiro ou disposicao')
 
-        pessoa.status()
-        pessoa.menu()
+        self.status()
+        #self.menu()
 
     def passear(self):
-        if (pessoa.disposicao >= 1) and (pessoa.dinheiro >=20):
-            pessoa.dinheiro = pessoa.dinheiro - 20
-            pessoa.disposicao = pessoa.disposicao - 1
+        if (self.disposicao >= 1) and (self.dinheiro >=20):
+            self.dinheiro = self.dinheiro - 20
+            self.disposicao = self.disposicao - 1
             print('passeou')
         else:
             print('Voce não pode passear, pois esta sem dinheiro ou disposicao')
 
-        pessoa.status()
-        pessoa.menu()
+        self.status()
+        #self.menu()
 
-pessoa = Pessoa()
+#pessoa = Pessoa()
 #pessoa.menu()
