@@ -15,6 +15,7 @@ class Conta(object):
     def __init__(self, nome, saldo_inicial, telefone, tipo):
         if (len(nome) < 3):
             raise ValueError('Nome deve ter no minimo 3 caracteres')
+        
         self.nome = nome
         self.saldo_inicial = saldo_inicial
         self.telefone = telefone
@@ -31,8 +32,6 @@ class Conta(object):
         self.saldo += valor_deposito
         print('Valor depositado foi: %s' % valor_deposito)
         print('Saldo atual: %s' % self.saldo)
-        registro = ('\nDEPOSITO EFETUADO \nDeposito de %s reais na conta de %s \nSaldo atual: %s' % (valor_deposito, self.nome, self.saldo))
-        #self.movimentacao(registro)
         cursor.execute("insert into registros(nome, valor, movimento, saldo) values (?,?,'Deposito',?)", (self.nome, valor_deposito, self.saldo))
         conn.commit()
 
@@ -45,8 +44,6 @@ class Conta(object):
             self.saldo -= valor_saque
             print('voce sacou %s reais' % valor_saque)
             print('seu saldo é %s' % self.saldo)
-            registro = ('\nSAQUE EFETUADO\n Voce sacou %s \n Saldo atual ' % (valor_saque, self.saldo))
-            #self.movimentacao(registro)
             cursor.execute("insert into registros(nome, valor, movimento, saldo) values (?,?,'Saque',?)", (self.nome, valor_saque, self.saldo))
             conn.commit()
 
@@ -68,8 +65,6 @@ class Conta(object):
                     print(pessoa.saldo)
                     self.saldo -= valor_transferir
                     print('valor transferido, para %s quantia %s' % (pessoa.nome, valor_transferir))
-                    registro = ('\nTransferencia de valor\n Voce transferiu a quantia de %s para a conta de %s' % (valor_transferir, pessoa.nome))
-                    #self.movimentacao(registro)
                     cursor.execute("insert into registros(nome, valor, movimento, destino, saldo) values (?,?,'Transferencia',?,?)", (self.nome, valor_transferir, pessoa.nome, self.saldo))
                     conn.commit()
 
@@ -86,15 +81,8 @@ class Conta(object):
 
     def extrato(self):
         r = cursor.execute("select * from registros where nome= ?", (self.nome,))
-        #return r.fetchone()
-        print('schema:')
         for schema in r.fetchall():
             print(schema)
-        #arquivo = open('movimentacao%s.txt' % self.nome, 'r')
-        #conteudo = arquivo.readlines()
-        #for linha in conteudo:
-        #    print(linha)
-        #arquivo.close()
 
 
 pessoas = []
