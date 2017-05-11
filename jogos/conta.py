@@ -85,11 +85,16 @@ class Conta(object):
 
 
     def extrato(self):
-        arquivo = open('movimentacao%s.txt' % self.nome, 'r')
-        conteudo = arquivo.readlines()
-        for linha in conteudo:
-            print(linha)
-        arquivo.close()
+        r = cursor.execute("select * from registros where nome= ?", (self.nome,))
+        #return r.fetchone()
+        print('schema:')
+        for schema in r.fetchall():
+            print(schema)
+        #arquivo = open('movimentacao%s.txt' % self.nome, 'r')
+        #conteudo = arquivo.readlines()
+        #for linha in conteudo:
+        #    print(linha)
+        #arquivo.close()
 
 
 pessoas = []
