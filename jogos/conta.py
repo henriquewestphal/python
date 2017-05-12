@@ -13,9 +13,6 @@ cursor.execute("create table if not exists registros(id integer primary key auto
 class Conta(object):
     """docstring for Conta."""
     def __init__(self, nome, saldo_inicial, telefone, tipo):
-        if (len(nome) < 3):
-            raise ValueError('Nome deve ter no minimo 3 caracteres')
-        
         self.nome = nome
         self.saldo_inicial = saldo_inicial
         self.telefone = telefone
