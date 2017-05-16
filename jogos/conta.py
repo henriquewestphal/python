@@ -10,9 +10,35 @@ cursor = conn.cursor()
 cursor.execute("create table if not exists contas (id integer primary key autoincrement, nome text not null, saldoinicial real not null, telefone integer not null, tipo text not null, saldo real not null);")
 cursor.execute("create table if not exists registros(id integer primary key autoincrement, nome text not null, valor real not null, movimento text not null, destino text, saldo real not null);")
 
+nome_tabela = 'contas'
+# Motra as colunas da tabela
+#cursor.execute('PRAGMA table_info({})'.format(nome_tabela))
+#colunas = [tupla[1] for tupla in cursor.fetchall()]
+#print('Colunas:', colunas)
+
+# obtendo o schema da tabela
+#cursor.execute("""
+#SELECT sql FROM sqlite_master WHERE type='table' AND name=?
+#""", (nome_tabela,))
+#print('Schema:')
+#for schema in cursor.fetchall():
+#    print("%s" % (schema))
+
+
+
+
+
 class Conta(object):
     """docstring for Conta."""
     def __init__(self, nome, saldo_inicial, telefone, tipo):
+
+        for pessoa in pessoas:
+            if pessoa.nome == destino:
+                pessoa.saldo += valor_transferir
+                print(pessoa.saldo)
+
+
+
         self.nome = nome
         self.saldo_inicial = saldo_inicial
         self.telefone = telefone
@@ -80,6 +106,15 @@ class Conta(object):
         r = cursor.execute("select * from registros where nome= ?", (self.nome,))
         for schema in r.fetchall():
             print(schema)
+
+
+cursor.execute("""
+SELECT * FROM contas;
+""")
+
+for linha in cursor.fetchall():
+    sqlcomandos = split(',')
+    print(sqlcomandos)
 
 
 pessoas = []
