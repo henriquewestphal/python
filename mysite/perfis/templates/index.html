@@ -29,13 +29,36 @@
         {% for convite in perfil_logado.convites_recebibos.all %}
         <li class="list-group-item">
           {{ convite.solicitante.nome }}
-          <a href="#" class="pull-right">Aceitar</a>
+          <a href="{% url 'aceitar' convite.id %}" class="pull-right">aceitar</a>
         </li>
         {% endfor %}
       </ul>
       {% else %}
       <div class="panel-body">
         <p>Nenhhum comvite recebido :(</p>
+      </div>
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <div class="panel panel-default">
+    {% with total_de_contatos=perfil_logado.contatos.count %}
+      {% if total_de_contatos %}
+      <div class="panel-heading">
+        <strong>Você tem {{total_de_contatos }}
+          Convite{{total_de_contatos |pluralize}}
+            </strong>
+      </div>
+      <ul class="list-group">
+        {% for contato in perfil_logado.contatos.all %}
+        <li class="list-group-item">
+          <a href="{% url 'exibir' contato.id %}">{{contato.nome}}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="panel-body">
+        <p>Voce não  possiu contatos no momento</p>
       </div>
       {% endif %}
     {% endwith %}
