@@ -1,0 +1,67 @@
+{%  extends "base.html" %}
+{% block body %}
+<div class="col-lg-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <strong>Todos os Contas</strong>
+    </div>
+    {% if contas %}
+    <ul>
+      {% for cadastro in contas%}
+      <li>
+          <a href="{% url 'exibir' cadastro.id %}">{{cadastro.nome|upper}}/{{cadastro.email}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>Nenhum Cadastro encontrado</p>
+    {% endif %}
+  </div>
+  <div class="panel panel-default">
+    {% with total_de_convites=perfil_logado.convites_recebibos.count %}
+      {% if total_de_convites %}
+      <div class="panel-heading">
+        <strong>Você tem {{total_de_convites }}
+          Convite{{total_de_convites |pluralize}}
+           aguardando aprovação</strong>
+      </div>
+      <ul class="list-group">
+        {% for convite in perfil_logado.convites_recebibos.all %}
+        <li class="list-group-item">
+          {{ convite.solicitante.nome }}
+          <a href="{% url 'aceitar' convite.id %}" class="pull-right">aceitar</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="panel-body">
+        <p>Nenhhum comvite recebido :(</p>
+      </div>
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <div class="panel panel-default">
+    {% with total_de_contatos=perfil_logado.contatos.count %}
+      {% if total_de_contatos %}
+      <div class="panel-heading">
+        <strong>Você tem {{total_de_contatos }}
+          Convite{{total_de_contatos |pluralize}}
+            </strong>
+      </div>
+      <ul class="list-group">
+        {% for contato in perfil_logado.contatos.all %}
+        <li class="list-group-item">
+          <a href="{% url 'exibir' contato.id %}">{{contato.nome}}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <div class="panel-body">
+        <p>Voce não  possiu contatos no momento</p>
+      </div>
+      {% endif %}
+    {% endwith %}
+  </div>
+</div>
+{% endblock %}
