@@ -1,9 +1,9 @@
-FROM ubuntu:15.04
+FROM python:3.6
 
-RUN apt-get update && apt-get install -y apache2 && apt-get install -y python-django
+COPY . /app
 
-EXPOSE 80
-EXPOSE 8000
+WORKDIR /app
 
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+RUN pip install -r requirements.txt
 
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
